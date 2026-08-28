@@ -518,7 +518,25 @@
         window.print();
     }
 
+    function loadFromQuery() {
+        const qs = new URLSearchParams(window.location.search);
+        const raw = qs.get('mpai');
+        if (!raw) return;
+        raw.split(',').forEach(pair => {
+            const parts = pair.split('=');
+            if (parts.length !== 2) return;
+            const d = parts[0].trim().toUpperCase();
+            const v = parseFloat(parts[1]);
+            if (DOMAIN_ORDER.includes(d) && !isNaN(v)) {
+                const cl = document.getElementById("score_"+d);
+                cl.value = v;
+                updateVal(d);
+            }
+        });
+    }
+
     renderScoreInputs();
+    loadFromQuery();
     </script>
 </body>
 </html>

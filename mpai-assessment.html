@@ -98,6 +98,23 @@
         .btn-print { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s; text-decoration: none; margin: 0.5rem; }
         .btn-print:hover { background: var(--gradient-soft); transform: translateY(-2px); }
 
+        .score-section { background: #F7FAFF; border: 2px solid var(--border); border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; text-align: left; }
+        .score-section h4 { color: var(--primary); font-size: 1.15rem; margin-bottom: 0.25rem; }
+        .score-section .score-sub { color: var(--text-light); font-size: 0.85rem; margin-bottom: 1rem; }
+        .score-table { width: 100%; border-collapse: collapse; margin-bottom: 0.5rem; }
+        .score-table th, .score-table td { border: 1px solid var(--border); padding: 0.65rem; text-align: left; font-size: 0.9rem; vertical-align: middle; }
+        .score-table th { background: var(--primary); color: white; font-weight: 600; }
+        .score-table td.sev-severe { color: #C53030; font-weight: 700; }
+        .score-table td.sev-moderate { color: #C05621; font-weight: 700; }
+        .score-table td.sev-healthy { color: #276749; font-weight: 700; }
+        .score-pill { display: inline-block; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .pill-severe { background: #FED7D7; color: #9B2C2C; }
+        .pill-moderate { background: #FEFCBF; color: #975A16; }
+        .pill-healthy { background: #C6F6D5; color: #22543D; }
+        .score-fallback { color: var(--text-light); font-size: 0.85rem; margin-top: 0.75rem; }
+        .btn-plan { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gradient); color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s; text-decoration: none; margin: 0.5rem auto; }
+        .btn-plan:hover { opacity: 0.9; transform: translateY(-2px); }
+
         .whatsapp-link { display: inline-flex; align-items: center; gap: 0.5rem; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; margin: 0.5rem; }
         .whatsapp-link:hover { opacity: 0.9; transform: translateY(-2px); }
 
@@ -931,6 +948,8 @@
                         <div class="result-icon"><i data-feather="check-circle"></i></div>
                         <h3>Assessment Complete!</h3>
                         <p>Thank you for completing the MIND Personality Assessment. Your responses are not stored online. Please download your report and share it with your psychologist.</p>
+                        <div id="scoreResults"></div>
+                        <button type="button" class="btn-plan" id="btnToPlan" onclick="openTreatmentPlan()" style="display:none;"><i data-feather="arrow-right"></i> View Personalized Treatment Plan</button>
                         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;">
                             <button class="btn-download" onclick="downloadTXT()"><i data-feather="download"></i> Download Report (.txt)</button>
                             <button class="btn-print" onclick="window.print()"><i data-feather="printer"></i> Print</button>
@@ -1087,7 +1106,144 @@
             document.getElementById('reviewBox').style.display = 'none';
             document.querySelector('.step-content[data-step="5"] .nav-buttons').style.display = 'none';
             document.getElementById('resultBox').classList.add('visible');
+            renderAutoScores();
             feather.replace();
+        }
+
+        // ============================================================
+        // MPAI Auto-Scoring (ports /home/zubair/MIND/code/clinical-tpa/mpai_scorer.py)
+        // ============================================================
+        const SCORE_DOMAINS = ['A','B','C','D','E','F','G','H'];
+        const SCORE_REVERSE = {
+            A:['A9','A10'], B:['B9','B10'], C:['C9','C10'], D:['D9','D10'],
+            E:['E9','E10'], F:['F9','F10'], G:['G9','G10'], H:['H9','H10']
+        };
+        // sentence-completion pathology keywords
+        const SCT_PATH = ["never","not","don't","dont","cannot","can't","cant","alone","lonely",
+            "abandon","leave","leaves","trust no one","fear","afraid","scared","anxious","anxiety",
+            "worry","danger","unsafe","hurt","harm","pain","dark","angry","anger","rage","hate",
+            "lose control","lose my temper","overwhelmed","flood","panic","hopeless","empty",
+            "meaningless","pointless","worthless","fail","failure","inferior","imposter",
+            "not good enough","shame","guilt","regret","who i am","confused","unsure","mask","hide",
+            "hidden","fake","mystery","unknown","uncertain","unclear","large difference",
+            "can't decide","depend on","controlled by","powerless","helpless","no choice",
+            "don't know","not sure","worry they will","voices","hallucinat","paranoi","not real",
+            "unreal","dissociat","can't remember","different from how","lose myself","isolat",
+            "always on"];
+        const SCT_PATH_PTS = {never:4,"not":2,"don't":2,dont:2,cannot:3,"can't":3,cant:3,alone:3,
+            lonely:3,abandon:4,leave:3,leaves:3,"trust no one":4,fear:3,afraid:3,scared:3,anxious:3,
+            anxiety:3,worry:2,danger:4,unsafe:4,hurt:4,harm:4,pain:3,dark:3,angry:3,anger:3,rage:3,
+            hate:3,"lose control":5,"lose my temper":5,overwhelmed:4,flood:4,panic:4,hopeless:4,
+            empty:3,meaningless:4,pointless:4,worthless:4,fail:3,failure:3,inferior:4,imposter:3,
+            "not good enough":4,shame:3,guilt:3,regret:3,"who i am":3,confused:3,unsure:3,mask:3,
+            hide:3,hidden:3,fake:3,mystery:3,unknown:3,uncertain:3,unclear:3,"large difference":4,
+            "can't decide":4,"depend on":3,"controlled by":4,powerless:4,helpless:4,"no choice":3,
+            "don't know":3,"not sure":2,"worry they will":3,voices:5,hallucinat:6,paranoi:5,
+            "not real":5,unreal:4,dissociat:4,"can't remember":4,"different from how":4,
+            "lose myself":3,isolat:3,"always on":3};
+        const SCT_HEALTH = ["help","reliable","safe","there for me","supportive","trust","trustworthy",
+            "good","kind","caring","my choice","i decide","i control","my responsibility","confident",
+            "capable","strong","in control","know myself","true self is","authentic","real me","close",
+            "connected","loved","worthy","meaningful","purpose","happy","hopeful","grateful","accept",
+            "cope","breathe","calm","learn","manage"];
+        const SCT_HEALTH_PTS = {help:-2,reliable:-3,safe:-3,"there for me":-3,supportive:-3,trust:-3,
+            trustworthy:-3,good:-2,kind:-2,caring:-2,"my choice":-3,"i decide":-3,"i control":-3,
+            "my responsibility":-3,confident:-3,capable:-3,strong:-2,"in control":-3,"know myself":-3,
+            "true self is":-2,authentic:-3,"real me":-3,close:-2,connected:-2,loved:-3,worthy:-3,
+            meaningful:-3,purpose:-3,happy:-2,hopeful:-3,grateful:-3,accept:-2,cope:-2,breathe:-2,
+            calm:-3,learn:-2,manage:-2};
+
+        function sctStemScore(completion) {
+            const t = (completion||"").toLowerCase();
+            if (!t.trim()) return 3; // omitted -> neutral-elevated (manual: omissions)
+            let s = 0;
+            SCT_PATH.forEach(k=>{ if (t.includes(k)) s += (SCT_PATH_PTS[k]||3); });
+            SCT_HEALTH.forEach(k=>{ if (t.includes(k)) s += (SCT_HEALTH_PTS[k]||-2); });
+            return Math.max(0, Math.min(6, s));
+        }
+        function classifySeverity(v) {
+            if (v >= 4) return {label:"Severe (C1-C3)", cls:"severe"};
+            if (v >= 2) return {label:"Moderate (P1-N)", cls:"moderate"};
+            return {label:"Mild / Healthy (P3-P2)", cls:"healthy"};
+        }
+        function congruencePattern(sctAvg, srAvg) {
+            if (sctAvg==null || srAvg==null) return "—";
+            const sh = 6 - sctAvg, rh = 6 - srAvg;
+            if (sh >= 3.6 && rh >= 3.0) return "Congruent Healthy";
+            if (sh < 1.2 && rh < 3.0) return "Congruent Pathological";
+            if (sh < 1.2 && rh >= 3.0) return "Defended";
+            if (sh >= 3.6 && rh < 3.0) return "Self-Critical";
+            return "Moderate";
+        }
+
+        function computeScores() {
+            const out = {};
+            SCORE_DOMAINS.forEach(d => {
+                // Part A: sentence completion (5 stems *0-6)
+                let sctTotal = 0, sctN = 0;
+                for (let i=1;i<=5;i++){
+                    const el = document.querySelector(`textarea[data-item="${d}${i}"]`);
+                    const val = el ? el.value : "";
+                    if (val && val.trim()) { sctTotal += sctStemScore(val); sctN++; }
+                }
+                const sctAvg = sctN ? +(sctTotal/sctN).toFixed(1) : null;
+                // Part B: self-report Likert 1-5
+                let likertSum = 0, likertN = 0;
+                for (let i=6;i<=10;i++){
+                    const sel = document.querySelector(`input[name="${d}${i}"]:checked`);
+                    if (sel){
+                        let raw = parseFloat(sel.value);
+                        if (SCORE_REVERSE[d].includes(`${d}${i}`)) raw = 7 - raw;
+                        likertSum += raw; likertN++;
+                    }
+                }
+                let srAvg = null;
+                if (likertN){
+                    const avgLikert = likertSum/likertN; // 1-5 health
+                    srAvg = +Math.max(0, Math.min(6, (6-avgLikert)/4*6)).toFixed(1);
+                }
+                let blend = null;
+                if (sctAvg!=null && srAvg!=null) blend = +((Math.max(sctAvg,srAvg)*0.7)+(Math.min(sctAvg,srAvg)*0.3)).toFixed(1);
+                else blend = sctAvg!=null ? sctAvg : srAvg;
+                out[d] = {sctAvg, srAvg, blend, cong: congruencePattern(sctAvg,srAvg)};
+            });
+            return out;
+        }
+
+        function renderAutoScores() {
+            const scores = computeScores();
+            const names = {A:'Trust & Safety',B:'Autonomy & Agency',C:'Identity & Self',
+                D:'Connection & Relationships',E:'Emotion & Regulation',F:'Competence & Achievement',
+                G:'Meaning & Purpose',H:'Reality & Awareness'};
+            let html = `<div class="score-section">
+                <h4>Auto-Scored Domain Profile</h4>
+                <div class="score-sub">Computed from your responses (scores 0-6, higher = more pronounced). Blended = weighted SCT + Self-Report.</div>
+                <table class="score-table">
+                    <tr><th>Domain</th><th>Score (0-6)</th><th>Severity</th><th>Congruence</th></tr>`;
+            SCORE_DOMAINS.forEach(d => {
+                const s = scores[d];
+                const sev = classifySeverity(s.blend||0);
+                const pill = `pill-${sev.cls}`;
+                html += `<tr>
+                    <td><b>${d}.</b> ${names[d]}</td>
+                    <td class="sev-${sev.cls}">${s.blend != null ? s.blend.toFixed(1) : '—'}</td>
+                    <td><span class="score-pill ${pill}">${sev.label}</span></td>
+                    <td>${s.cong}</td></tr>`;
+            });
+            html += `</table>
+                <p class="score-fallback">Scores are an automated heuristic for clinical-reasoning support only — not a diagnosis. Review with a licensed clinician.</p>
+            </div>`;
+            document.getElementById('scoreResults').innerHTML = html;
+
+            // enable "continue to plan" button and persist scores for the plan tool
+            const params = SCORE_DOMAINS.map(d => `${d}=${scores[d].blend!=null?scores[d].blend.toFixed(1):0}`).join(',');
+            document.getElementById('btnToPlan').style.display = 'inline-flex';
+            window._mpaiScores = params;
+        }
+
+        function openTreatmentPlan() {
+            const params = window._mpaiScores || '';
+            window.location.href = `tools/treatment-plan.html?mpai=${encodeURIComponent(params)}`;
         }
 
         function getReportText() {
