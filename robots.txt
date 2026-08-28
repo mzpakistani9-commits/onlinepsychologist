@@ -1,5 +1,5 @@
 # robots.txt for Muhammad Zubair - Clinical Psychologist
-# https://onlinepsychologist.github.io/
+# https://mzpakistani9-commits.github.io/onlinepsychologist/
 
 # Allow all AI crawlers and search engines
 User-agent: *
@@ -26,4 +26,4 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap location
-Sitemap: https://onlinepsychologist.github.io/sitemap.xml
+Sitemap: https://mzpakistani9-commits.github.io/onlinepsychologist/sitemap.xml
