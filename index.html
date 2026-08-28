@@ -149,7 +149,7 @@
     text-decoration: none;
     transition: color .2s;
   }
-  .nav-links a:hover { color: var(--teal); }
+  .nav-links a:hover, .nav-links a.active { color: var(--teal); }
 
   .nav-cta {
     background: var(--teal);
@@ -851,12 +851,16 @@
 
 <!-- ── NAV ── -->
 <nav id="nav">
-  <a href="#" class="nav-logo">MZ <span>Zubair</span></a>
+  <a href="index.html" class="nav-logo">MZ <span>Zubair</span></a>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About Me</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="mpai-assessment.html">Assessment</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
     <li><a href="https://calendly.com/mzpakistani9" target="_blank" class="nav-cta">Book Session</a></li>
   </ul>
 </nav>
