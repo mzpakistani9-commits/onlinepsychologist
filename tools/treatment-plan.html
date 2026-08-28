@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free clinical treatment plan generator. Enter your MPAI personality assessment domain scores to receive a personalized, safety-checked, school-of-thought based treatment plan.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/tools/treatment-plan.html">
+    <meta property="og:title" content="Free Clinical Treatment Plan Generator | Online Psychologist">
+    <meta property="og:description" content="Generate a personalized, safety-checked treatment plan from your MPAI personality domain scores.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clinical Treatment Plan Generator">
+    <title>Clinical Treatment Plan Generator | Free Online Tool | Muhammad Zubair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .tool-section { padding: 5rem 0; }
+        .tool-container { max-width: 860px; margin: 0 auto; }
+        .disclaimer { background: #FFF5F5; border: 2px solid #FEB2B2; border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; color: #C53030; font-size: 0.95rem; line-height: 1.7; display: flex; gap: 1rem; align-items: start; }
+        .disclaimer i { width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px; }
+        .input-card { background: white; border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md); margin-bottom: 1.5rem; border: 2px solid var(--border); }
+        .input-title { font-size: 1.35rem; color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+        .input-title i { width: 24px; height: 24px; }
+        .score-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; flex-wrap: wrap; }
+        .score-label { flex: 0 0 230px; font-weight: 600; color: var(--text); font-size: 0.95rem; }
+        .score-label small { display: block; color: var(--text-light); font-weight: 400; font-size: 0.8rem; }
+        .score-control { display: flex; align-items: center; gap: 0.9rem; flex: 1 1 300px; }
+        .score-control input[type="range"] { flex: 1; accent-color: var(--primary); }
+        .score-value { width: 44px; height: 44px; background: var(--gradient); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
+        .severity-text { font-size: 0.8rem; color: var(--text-light); flex: 0 0 120px; text-align: left; }
+        .symptoms-textarea { width: 100%; min-height: 120px; border: 2px solid var(--border); border-radius: 12px; padding: 1rem; font-family: inherit; font-size: 0.95rem; color: var(--text); resize: vertical; }
+        .symptoms-textarea:focus { outline: none; border-color: var(--primary); }
+        .btn-calc { margin-top: 0.5rem; width: 100%; }
+        .result-box { display: none; margin-top: 2rem; }
+        .result-box.visible { display: block; animation: fadeInUp 0.5s ease; }
+        .alert-box { background: #FCECEC; border: 2px solid #C53030; border-left: 6px solid #C53030; border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; color: #9B2C2C; line-height: 1.7; }
+        .report-card { background: white; border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md); margin-bottom: 1.5rem; border: 2px solid var(--border); }
+        .report-card h2 { color: var(--primary); font-size: 1.4rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+        .report-card h2 i { width: 22px; height: 22px; }
+        .report-card h3 { color: var(--text); font-size: 1.1rem; margin: 1.2rem 0 0.6rem; }
+        .kv { display: grid; grid-template-columns: 220px 1fr; gap: 0.4rem 1rem; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .kv b { color: var(--primary); }
+        .school-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; }
+        .school-table th, .school-table td { border: 1px solid var(--border); padding: 0.75rem; text-align: left; vertical-align: top; font-size: 0.9rem; }
+        .school-table th { background: var(--primary); color: white; }
+        .school-table .school-name { font-weight: 700; color: var(--primary); white-space: nowrap; }
+        .redflag { background: #FFF5F5; border-left: 4px solid #C05621; padding: 0.9rem 1rem; border-radius: 8px; color: #7B341E; font-size: 0.9rem; line-height: 1.6; }
+        .phase { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--border); }
+        .phase:last-child { border-bottom: none; }
+        .phase-badge { display: inline-block; background: var(--gradient); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.6rem; }
+        .phase-goal { color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.6rem; line-height: 1.6; }
+        .technique-list { list-style: none; padding: 0; }
+        .technique-list li { display: flex; gap: 0.7rem; align-items: flex-start; margin-bottom: 0.6rem; font-size: 0.95rem; color: var(--text); }
+        .technique-list li i { width: 18px; height: 18px; color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+        .outcome-list { list-style: none; padding: 0; }
+        .outcome-list li { display: flex; gap: 0.7rem; margin-bottom: 0.6rem; font-size: 0.95rem; color: var(--text); }
+        .outcome-list li i { width: 18px; height: 18px; color: #276749; flex-shrink: 0; margin-top: 2px; }
+        .footer-note { color: var(--text-light); font-size: 0.85rem; line-height: 1.6; font-style: italic; margin-top: 1.5rem; }
+        .btn-reset { background: transparent; color: var(--text-light); border: 2px solid var(--border); padding: 0.7rem 1.4rem; border-radius: 10px; cursor: pointer; font-weight: 600; margin-top: 0.5rem; width: 100%; transition: all 0.3s ease; }
+        .btn-reset:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-print { background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 0.7rem 1.4rem; border-radius: 10px; cursor: pointer; font-weight: 600; margin-top: 0.5rem; width: 100%; transition: all 0.3s ease; }
+        .btn-print:hover { background: var(--primary); color: white; }
+        .actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .kv { grid-template-columns: 1fr; gap: 0.2rem; }
+            .score-label { flex: 1 1 100%; }
+            .actions { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Me</a>
+                <a href="../services.html">Services</a>
+                <a href="../tools.html" class="active">Tools</a>
+                <a href="../mpai-assessment.html">Assessment</a>
+                <a href="../books.html">Books</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Clinical Treatment Plan Generator</h1>
+            <p class="page-subtitle">Personalized, safety-checked treatment planning from your MPAI domain scores</p>
+        </div>
+    </section>
+
+    <section class="tool-section">
+        <div class="container tool-container">
+            <div class="disclaimer">
+                <i data-feather="alert-triangle"></i>
+                <div>
+                    <strong>Important:</strong> This tool is for educational, training, and clinical-reasoning support only. It is NOT a diagnostic instrument and does NOT replace assessment or treatment by a licensed clinician. If you are in crisis or are a client experiencing severe distress, please contact emergency services or a qualified professional immediately.
+                </div>
+            </div>
+
+            <div class="input-card">
+                <div class="input-title"><i data-feather="sliders"></i> 1. Enter MPAI Domain Scores</div>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.7;">
+                    Scores come from the <a href="../mpai-assessment.html">MPAI Personality Assessment</a>.
+                    Higher scores (4-6) indicate more pronounced areas of difficulty; lower scores (0-2) indicate strengths.
+                </p>
+                <div id="scoreInputs"></div>
+            </div>
+
+            <div class="input-card">
+                <div class="input-title"><i data-feather="edit-3"></i> 2. Optional: Describe Concerns</div>
+                <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.9rem; line-height: 1.6;">
+                    Optional free text (e.g. from the Sentence Completion part or presenting concerns).
+                    Used for the safety screen and symptom cross-check.
+                </p>
+                <textarea id="symptomsInput" class="symptoms-textarea"
+                    placeholder="e.g. I feel anxious and overwhelmed, I worry people will leave me, I don't feel in control..."></textarea>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn-primary btn-calc" onclick="generatePlan()">Generate Plan</button>
+                <button type="button" class="btn-reset" onclick="resetTool()">Reset</button>
+                <button type="button" class="btn-print" onclick="printReport()">Print / PDF</button>
+            </div>
+
+            <div class="result-box" id="resultBox"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer"><i data-feather="facebook"></i></a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer"><i data-feather="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Me</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../tools.html">Tools</a></li>
+                    <li><a href="../mpai-assessment.html">MPAI Assessment</a></li>
+                    <li><a href="../books.html">Books</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone"></i> +92 318 7036719</p>
+                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle"></i>
+    </a>
+    <script src="../script.js"></script>
+    <script>
+    // ============================================================
+    // MPAI Knowledge Base (ported from the clinical reasoning engine)
+    // ============================================================
+    const DOMAINS = {
+        A: { name: "Trust & Safety",
+             letter: "A",
+             schools: [
+                 { s: "Psychodynamic / Attachment", t: "Bowlby 1969; Ainsworth 1978; Main & Hesse 1991", o: "Early caregiver inconsistency creates an internal working model that 'others are unreliable'. Unresolved attachment trauma is reactivated in adult relationships, producing conditional or avoidant trust." },
+                 { s: "Object Relations", t: "Klein 1946; Winnicott 1965; Fairbairn 1952", o: "Splitting of good/bad objects: the caregiver was simultaneously a source of comfort and threat, creating confusion about whether others can be trusted." },
+                 { s: "Schema Therapy", t: "Young et al. 2003", o: "Early maladaptive schemas (Mistrust/Abuse, Abandonment/Instability, Emotional Deprivation) become activated in adult relationships." },
+                 { s: "Evolutionary Psychology", t: "Buss 2019; Panksepp 2004", o: "Threat-detection system hypersensitized by early danger signals; the brain prioritizes safety over connection when the environment is unpredictable." },
+                 { s: "Behavioral", t: "Mowrer 1960; Wolpe 1958", o: "Classical conditioning: previously 'safe' people were paired with painful experiences; avoidance of intimacy is maintained by negative reinforcement." }
+             ],
+             techniques: [
+                 "Mentalization-Based Treatment (MBT) - build capacity to infer own and others' mental states",
+                 "EMDR - process traumatic attachment memories that created the mistrust template",
+                 "Schema Therapy - identify/challenge Mistrust/Abuse schema; limited reparenting",
+                 "Relational Psychodynamic - use transference to explore trust patterns in-session"
+             ],
+             red: "Do NOT interpret mistrust early when the domain is severe. Establish a predictable, reliable frame first; moving too fast confirms 'people can't be trusted'." },
+        B: { name: "Autonomy & Agency",
+             letter: "B",
+             schools: [
+                 { s: "Behavioral / Social Learning", t: "Rotter 1966; Bandura 1977; Seligman 1975", o: "Independent behavior was not reinforced; others made decisions, extinguishing agency. Helplessness was modeled." },
+                 { s: "Adlerian", t: "Adler 1927", o: "Overprotection or criticism overwhelmed inferiority feelings; the child never developed striving through social interest." },
+                 { s: "Cognitive", t: "Beck 1979; Ellis 1962", o: "Core beliefs ('I can't', 'I'm helpless') block action before it begins." },
+                 { s: "Humanistic", t: "Rogers 1951; Maslow 1968", o: "Conditions of worth: 'I am only OK when I do what others want'; self-actualization is blocked by internalized expectations." },
+                 { s: "Existential", t: "May 1958; Yalom 1980; Sartre 1943", o: "Freedom anxiety: the weight of responsibility for one's choices is terrifying; the client escapes into determinism." }
+             ],
+             techniques: [
+                 "Behavioral Activation - graduated tasks with tracking; label every choice the client makes",
+                 "CBT + Socratic questioning - challenge 'I can't' via behavioral experiments",
+                 "Motivational Interviewing - explore ambivalence; elicit change talk",
+                 "Existential therapy - confront freedom and responsibility directly"
+             ],
+             red: "For external locus of control, start with micro-choices. Name and label agency explicitly. A passive/interpretive stance makes low agency worse." },
+        C: { name: "Identity & Self-Concept",
+             letter: "C",
+             schools: [
+                 { s: "Ego Psychology", t: "Erikson 1968; Marcia 1966", o: "Failed identity consolidation in adolescence; ego too weak to integrate conflicting internal demands. Identity diffusion = arrested development." },
+                 { s: "Self Psychology", t: "Kohut 1971, 1977", o: "Selfobjects failed to mirror the authentic self; a false self formed to survive an environment that did not recognize the true experience." },
+                 { s: "Object Relations (Winnicott)", t: "Winnicott 1960, 1965", o: "The False Self developed as a compliant facade when the True Self was not sufficiently reflected ('good-enough' mirroring was absent)." },
+                 { s: "Jungian", t: "Jung 1960; von Franz 1980", o: "Individuation blocked; client identifies with persona and has not integrated shadow or connected with the Self." },
+                 { s: "Lacanian", t: "Lacan 1977", o: "Trapped in the Imaginary order - identification with an idealized image instead of accessing the Symbolic (language, social meaning)." }
+             ],
+             techniques: [
+                 "Schema Therapy - schema dialogue (Vulnerable Child / Detached Protector modes); values card sort",
+                 "Narrative Therapy - externalize the problem; rewrite the client's life story",
+                 "Jungian Active Imagination - dialogue with shadow figures; dream analysis",
+                 "DBT identity work - structured 'Who am I?' exploration"
+             ],
+             red: "Imposing an identity or premature interpretation is harmful. Mirror, hold, and explore with structure; let identity emerge." },
+        D: { name: "Connection & Intimacy",
+             letter: "D",
+             schools: [
+                 { s: "Attachment Theory", t: "Bowlby 1969; Ainsworth 1978; Main & Hesse 1991", o: "Insecure attachment (anxious/avoidant/disorganized) from early caregiving; internal working models 'I am unworthy' or 'others are unreliable'." },
+                 { s: "Interpersonal Theory", t: "Sullivan 1953; Kiesler 1988", o: "Early interpersonal patterns reinforced via repetition compulsion; the client recreates the original relational trauma to master it." },
+                 { s: "Object Relations", t: "Kernberg 1984; Fairbairn 1952", o: "Internal object-relation dyads are activated in relationships; the client projects internalized 'bad objects' onto others." },
+                 { s: "Family Systems", t: "Minuchin 1974; Bowen 1978", o: "Enmeshment or disengagement in family of origin; closeness became linked to danger, or individuality to abandonment." },
+                 { s: "Neuroscience", t: "Siegel 2012; Porges 2011", o: "Oxytocin system dysregulation; amygdala hyperactivation in social contexts due to early relational trauma." }
+             ],
+             techniques: [
+                 "Mentalization-Based (MBT) - 'What do you imagine I'm feeling?' build mind-reading capacity",
+                 "Couples Therapy (Gottman) - repair communication, build friendship, manage conflict",
+                 "Emotionally Focused Therapy (EFT) - access primary emotions beneath secondary anger/withdrawal",
+                 "Group Therapy - safe laboratory for interpersonal pattern feedback"
+             ],
+             red: "If D is severe with self-harm history, stabilize before deep relational work. Do not become cold/distant; stay boundaried and transparent to avoid confirming abandonment fears." },
+        E: { name: "Emotion & Regulation",
+             letter: "E",
+             schools: [
+                 { s: "Biosocial Theory (DBT)", t: "Linehan 1993", o: "Biological emotional vulnerability + invalidating environment = failure to learn emotion regulation; emotions were punished or dismissed." },
+                 { s: "Neuroscience", t: "van der Kolk 2014; Porges 2011; Schore 2001", o: "Amygdala hyperactivation, PFC underactivation, HPA axis dysregulation; polyvagal system stuck in a defensive state." },
+                 { s: "Cognitive", t: "Beck 1979; Burns 1980", o: "Cognitive distortions amplify emotion; catastrophizing and emotional reasoning escalate." },
+                 { s: "Psychodynamic", t: "McCullough 1999; Bromberg 2011", o: "Affect phobia: emotions unconsciously feared because paired with danger; defenses (splitting, dissociation, projective identification) block integration." },
+                 { s: "Somatic / Body-based", t: "van der Kolk 2014; Levine 1997; Ogden 2006", o: "Trauma stored in the body; the autonomic nervous system is stuck in fight/flight/freeze and re-enacts trauma somatically." }
+             ],
+             techniques: [
+                 "DBT skills training - 4 modules (Mindfulness, Distress Tolerance, Emotion Regulation, Interpersonal Effectiveness)",
+                 "Somatic Experiencing - body-based trauma processing; pendulate activation/calm",
+                 "CBT emotion diary - trigger -> thought -> emotion -> behavior chain",
+                 "AEDP - access core affect in a safe relationship; meta-emotional processing"
+             ],
+             red: "When E is severe, STABILIZE FIRST (3-6 mo DBT skills) before any trauma processing. Dysregulation is a deficit, not resistance. Intense affect focus before skills is contraindicated." },
+        F: { name: "Competence & Mastery",
+             letter: "F",
+             schools: [
+                 { s: "Adlerian", t: "Adler 1927", o: "Childhood inferiority feelings (physical/social/academic); when not compensated through healthy striving, an inferiority complex forms." },
+                 { s: "Cognitive", t: "Beck 1979; Burns 1980", o: "Core belief 'I am incompetent' from critical parents/peers; reinforced by discounting positives and magnifying failures." },
+                 { s: "Behavioral", t: "Bandura 1977, 1997", o: "Avoidance of challenge prevents mastery experiences; self-efficacy never builds because testing is avoided." },
+                 { s: "Psychodynamic", t: "Freud 1923; Kohut 1971", o: "Harsh superego (internalized critical parent); perfectionism as a defense against deep shame." },
+                 { s: "Humanistic", t: "Rogers 1951; Maslow 1968", o: "Conditions of worth tie self-worth to achievement rather than inherent value." }
+             ],
+             techniques: [
+                 "CBT behavioral experiments - test 'I'll fail' belief; graded exposure; mastery logs",
+                 "Adlerian therapy - explore early recollections; transform inferiority into social interest",
+                 "ACT - defusion from 'not good enough'; values-driven action despite fear",
+                 "Self-compassion training (Neff) - self-kindness, common humanity, mindfulness"
+             ],
+             red: "Over-challenging and ignoring successes reinforce inferiority. Encourage from a strengths-based stance; celebrate small wins explicitly." },
+        G: { name: "Meaning & Values",
+             letter: "G",
+             schools: [
+                 { s: "Existential", t: "Frankl 1959; Yalom 1980; May 1958; Kierkegaard 1844", o: "Confrontation with ultimate concerns (death, freedom, isolation, meaninglessness) without an adequate framework; existential vacuum." },
+                 { s: "Logotherapy", t: "Frankl 1959, 1969", o: "Meaning via three routes (creative, experiential, attitudinal values); loss occurs when all three are blocked." },
+                 { s: "Humanistic", t: "Rogers 1951; Maslow 1968", o: "Self-actualization blocked; organismic valuing overridden by conditions of worth; the client lives someone else's life." },
+                 { s: "Jungian", t: "Jung 1960; von Franz 1980", o: "Midlife crisis / blocked individuation; connection to the Self severed." },
+                 { s: "Developmental", t: "Erikson 1963, 1982", o: "Unresolved Integrity vs Despair (late adulthood) or Generativity vs Stagnation (middle adulthood)." }
+             ],
+             techniques: [
+                 "Logotherapy (Frankl) - meaning-centered intervention; three sources of meaning",
+                 "Existential therapy (Yalom) - confront death, freedom, isolation, meaninglessness",
+                 "ACT values work - values card sort; committed action",
+                 "Life review (Erikson) - narrative coherence for older adults"
+             ],
+             red: "Do NOT offer false optimism or platitudes. Sit with the despair first; meaning emerges from facing meaninglessness (Frankl)." },
+        H: { name: "Reality & Self-Awareness",
+             letter: "H",
+             schools: [
+                 { s: "Ego Psychology", t: "Hartmann 1958; Brenner 1982", o: "Weak ego functions (reality testing, judgment, impulse control, defenses); ego overwhelmed by id impulses or external stress." },
+                 { s: "CBT for psychosis (CBTp)", t: "Beck et al. 2009; Garety et al. 2001", o: "Dysfunctional beliefs held with conviction; anomalous perceptual experiences given catastrophic interpretations." },
+                 { s: "Neuropsychological", t: "Howes & Kapur 2009", o: "Neurotransmitter dysregulation; structural brain changes; neurodevelopmental disruption." },
+                 { s: "Attachment / Trauma", t: "Putnam 1997; van der Kolk 2014", o: "Dissociation as a defense against overwhelming trauma; the self 'splits off' unbearable experience." },
+                 { s: "Systems Theory", t: "Bowen 1978; Haley 1976", o: "Family/system dynamics reinforce distorted reality (gaslighting, enmeshment)." }
+             ],
+             techniques: [
+                 "CBTp - gentle Socratic questioning; reality anchoring; do NOT directly confront delusions",
+                 "Supportive therapy - grounding, reality orientation, structure",
+                 "Medication referral - psychiatric evaluation when indicated",
+                 "Trauma processing (when stable) - EMDR/CPT for trauma-rooted dissociation"
+             ],
+             red: "Rule out organic causes, psychosis, or severe dissociation FIRST (H severe). Deep interpretive work, regression encouragement, and direct confrontation are CONTRAINDICATED. Goal is stabilization and functioning, not insight." }
+    };
+
+    // Domain display order + names
+    const DOMAIN_ORDER = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    const DOMAIN_TITLES = {
+        A: "Trust & Safety", B: "Autonomy & Agency", C: "Identity & Self-Concept",
+        D: "Connection & Intimacy", E: "Emotion & Regulation", F: "Competence & Mastery",
+        G: "Meaning & Values", H: "Reality & Self-Awareness"
+    };
+    const DOMAIN_DESC = {
+        A: "Early trust, security, attachment", B: "Agency, decision-making, control",
+        C: "Identity, self-concept, authenticity", D: "Intimacy, closeness, connection",
+        E: "Emotion regulation, coping", F: "Competence, mastery, self-worth",
+        G: "Meaning, purpose, values", H: "Reality testing, self-awareness"
+    };
+
+    // Safety-first priority
+    const PRIMARY_STAB = ["D", "E", "H"];
+    const SECONDARY_STRUCT = ["A", "B", "C"];
+    const TERTIARY_ACT = ["F", "G"];
+
+    const SEVERE_RISK = ["suicidal","suicide","kill myself","end my life","kill someone",
+                         "homicidal","plan to hurt","self-harm","self harm","want to die"];
+
+    function severityOf(v) {
+        if (v >= 4) return { label: "Severe (C1-C3)", band: "severe" };
+        if (v >= 2) return { label: "Moderate (P1-N)", band: "moderate" };
+        return { label: "Mild / Healthy (P3-P2)", band: "healthy" };
+    }
+
+    function organizationOf(scores) {
+        const h = scores.H || 0, d = scores.D || 0, e = scores.E || 0, c = scores.C || 0;
+        if (h >= 5) return { name: "Psychotic organization", note: "weak ego, impaired reality testing" };
+        if (d >= 5 || e >= 6 || (d >= 4 && c >= 5))
+            return { name: "Borderline organization", note: "identity diffusion, primitive defenses, relational instability" };
+        if (h >= 3) return { name: "Neurotic organization (high)", note: "integrated but conflicted identity" };
+        return { name: "Neurotic organization", note: "integrated identity, intact reality testing" };
+    }
+
+    function priority(affectedSet) {
+        const order = [];
+        PRIMARY_STAB.forEach(k => { if (affectedSet.has(k)) order.push(k); });
+        SECONDARY_STRUCT.forEach(k => { if (affectedSet.has(k)) order.push(k); });
+        TERTIARY_ACT.forEach(k => { if (affectedSet.has(k)) order.push(k); });
+        return order;
+    }
+
+    function esc(s) {
+        return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    }
+
+    // ============================================================
+    // UI
+    // ============================================================
+    function renderScoreInputs() {
+        const wrap = document.getElementById("scoreInputs");
+        wrap.innerHTML = DOMAIN_ORDER.map(d => {
+            const sev = severityOf(0);
+            return `
+                <div class="score-row">
+                    <div class="score-label">${d}. ${DOMAIN_TITLES[d]}
+                        <small>${DOMAIN_DESC[d]}</small></div>
+                    <div class="score-control">
+                        <input type="range" min="0" max="6" step="0.5" value="0"
+                               id="score_${d}" oninput="updateVal('${d}')">
+                        <div class="score-value" id="val_${d}">0</div>
+                        <div class="severity-text" id="sev_${d}">${sev.label}</div>
+                    </div>
+                </div>`;
+        }).join("");
+    }
+
+    function updateVal(d) {
+        const v = parseFloat(document.getElementById("score_"+d).value);
+        document.getElementById("val_"+d).textContent = v;
+        const sev = severityOf(v);
+        const el = document.getElementById("sev_"+d);
+        el.textContent = sev.label;
+        el.style.color = sev.band === "severe" ? "#C53030" : sev.band === "moderate" ? "#C05621" : "#276749";
+    }
+
+    function collectScores() {
+        const scores = {};
+        DOMAIN_ORDER.forEach(d => { scores[d] = parseFloat(document.getElementById("score_"+d).value); });
+        return scores;
+    }
+
+    // ============================================================
+    // Report generation
+    // ============================================================
+    function generatePlan() {
+        const scores = collectScores();
+        const symptoms = document.getElementById("symptomsInput").value;
+
+        const affected = new Set();
+        DOMAIN_ORDER.forEach(d => { if (scores[d] >= 2) affected.add(d); });
+
+        const org = organizationOf(scores);
+        const prio = priority(affected);
+
+        let html = "";
+        const resultBox = document.getElementById("resultBox");
+        resultBox.innerHTML = "";
+
+        // --- Safety screen ---
+        const text = symptoms.toLowerCase();
+        const hits = SEVERE_RISK.filter(k => text.includes(k));
+        if (hits.length > 0) {
+            html += `<div class="alert-box"><strong><i data-feather="alert-triangle" style="width:20px;height:20px;vertical-align:-4px"></i> SAFETY ALERT</strong><br>
+                Risk language detected: ${esc(hits.join(", "))}. Refer to crisis services / a licensed professional NOW. Do not proceed with routine outpatient planning until risk is addressed and a written safety plan is in place.</div>`;
+        } else if (symptoms.trim()) {
+            html += `<div class="alert-box"><strong>Safety Screen</strong><br>No immediate crisis risk keywords detected from the intake text. Continue monitoring risk throughout treatment.</div>`;
+        }
+
+        // --- Diagnostic reasoning ---
+        html += `<div class="report-card"><h2><i data-feather="search"></i> 1. Diagnostic Reasoning</h2>`;
+        html += `<div class="kv"><b>Affected domains:</b><span>${affected.size ? [...affected].join(", ") : "None (scores all below 2)"}</span></div>`;
+        html += `<div class="kv"><b>Personality organization:</b><span>${esc(org.name)} &mdash; ${esc(org.note)}</span></div>`;
+        html += `<div class="kv"><b>Treatment priority (safety-first):</b><span>${prio.length ? prio.join(" &rarr; ") : "No treatment targets"}</span></div>`;
+        html += `</div>`;
+
+        // --- School-of-thought analysis ---
+        if (prio.length) {
+            html += `<div class="report-card"><h2><i data-feather="book-open"></i> 2. School-of-Thought Analysis</h2>`;
+            prio.forEach(d => {
+                const dom = DOMAINS[d];
+                const sev = severityOf(scores[d]);
+                html += `<h3>Domain ${d}: ${esc(DOMAINS[d].name)} &mdash; <span style="color:${sev.band==='severe'?'#C53030':sev.band==='moderate'?'#C05621':'#276749'}">${sev.label}</span></h3>`;
+                html += `<table class="school-table"><tr><th style="width:30%">School of Thought</th><th>Theorists</th><th>Origin / Explanation</th></tr>`;
+                dom.schools.forEach(s => {
+                    html += `<tr><td class="school-name">${esc(s.s)}</td><td>${esc(s.t)}</td><td>${esc(s.o)}</td></tr>`;
+                });
+                html += `</table>`;
+                html += `<div class="redflag"><b>Red flag:</b> ${esc(dom.red)}</div>`;
+            });
+            html += `</div>`;
+        }
+
+        // --- Phased plan ---
+        if (prio.length) {
+            const stabs = prio.filter(k => PRIMARY_STAB.includes(k));
+            const structs = prio.filter(k => SECONDARY_STRUCT.includes(k));
+            const acts = prio.filter(k => TERTIARY_ACT.includes(k));
+
+            html += `<div class="report-card"><h2><i data-feather="map"></i> 3. Phased Treatment Plan</h2>`;
+
+            if (stabs.length) {
+                const techs = [];
+                stabs.forEach(k => techs.push.apply(techs, DOMAINS[k].techniques.slice(0, 2)));
+                html += `<div class="phase"><span class="phase-badge">Phase 1 &mdash; Stabilization &amp; Skills (3-6 months)</span>`;
+                html += `<div class="phase-goal"><b>Focus:</b> ${stabs.map(k=>DOMAINS[k].name).join(", ")}<br><b>Goal:</b> Establish safety, build alliance, teach regulation skills before deep work.</div>`;
+                html += `<h3>Techniques</h3><ul class="technique-list">${techs.map(t=>`<li><i data-feather="check-circle"></i>${esc(t)}</li>`).join("")}</ul></div>`;
+            }
+            if (structs.length) {
+                const techs = [];
+                structs.forEach(k => techs.push.apply(techs, DOMAINS[k].techniques));
+                html += `<div class="phase"><span class="phase-badge">Phase 2 &mdash; Core Work: Structure (6-18 months)</span>`;
+                html += `<div class="phase-goal"><b>Focus:</b> ${structs.map(k=>DOMAINS[k].name).join(", ")}<br><b>Goal:</b> Repair core personality structure: trust, identity, agency.</div>`;
+                html += `<h3>Techniques</h3><ul class="technique-list">${techs.map(t=>`<li><i data-feather="check-circle"></i>${esc(t)}</li>`).join("")}</ul></div>`;
+            }
+            if (acts.length) {
+                const techs = [];
+                acts.forEach(k => techs.push.apply(techs, DOMAINS[k].techniques));
+                html += `<div class="phase"><span class="phase-badge">Phase 3 &mdash; Consolidation &amp; Actualization (3-9 months)</span>`;
+                html += `<div class="phase-goal"><b>Focus:</b> ${acts.map(k=>DOMAINS[k].name).join(", ")}<br><b>Goal:</b> Mastery, meaning-making, relapse prevention, termination readiness.</div>`;
+                html += `<h3>Techniques</h3><ul class="technique-list">${techs.map(t=>`<li><i data-feather="check-circle"></i>${esc(t)}</li>`).join("")}</ul></div>`;
+            }
+            html += `</div>`;
+        }
+
+        // --- Outcome indicators ---
+        html += `<div class="report-card"><h2><i data-feather="bar-chart-2"></i> 4. Outcome &amp; Termination Indicators</h2>`;
+        html += `<ul class="outcome-list">
+            <li><i data-feather="trending-up"></i>MPAI domain scores move from C1-C3 (4-6) to P1-N (2-3)</li>
+            <li><i data-feather="users"></i>Self-report and sentence-completion converge; defenses shift from primitive to mature</li>
+            <li><i data-feather="eye"></i>Client can identify own patterns without prompting</li>
+            <li><i data-feather="anchor"></i>Meaning domain anchors; client has a coherent narrative</li>
+        </ul></div>`;
+
+        html += `<div class="footer-note">This plan is generated by a knowledge-based clinical assistant from the MPAI framework. It supports clinical reasoning only and is NOT a replacement for assessment or treatment by a licensed clinician. Review all recommendations with professional clinical judgment.</div>`;
+
+        resultBox.innerHTML = html;
+        resultBox.classList.add("visible");
+        resultBox.scrollIntoView({ behavior: "smooth", block: "start" });
+        feather.replace();
+    }
+
+    function resetTool() {
+        DOMAIN_ORDER.forEach(d => {
+            document.getElementById("score_"+d).value = 0;
+            document.getElementById("val_"+d).textContent = "0";
+            document.getElementById("sev_"+d).textContent = "Mild / Healthy (P3-P2)";
+            document.getElementById("sev_"+d).style.color = "#276749";
+        });
+        document.getElementById("symptomsInput").value = "";
+        document.getElementById("resultBox").classList.remove("visible");
+        document.getElementById("resultBox").innerHTML = "";
+    }
+
+    function printReport() {
+        const box = document.getElementById("resultBox");
+        if (!box.classList.contains("visible")) {
+            alert("Please generate a plan first (click 'Generate Plan').");
+            return;
+        }
+        window.print();
+    }
+
+    renderScoreInputs();
+    </script>
+</body>
+</html>
