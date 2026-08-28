@@ -1,196 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free mental health tools: PHQ-9 depression screener, GAD-7 anxiety screener, BMI calculator, mood tracker, and more.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/tools.html">
-    <meta property="og:title" content="Free Mental Health Tools & Psychology Calculators">
-    <meta property="og:description" content="Free PHQ-9, GAD-7, BMI calculator, mood tracker, and SPSS statistical tools for psychology students.">
-    <meta property="og:url" content="https://mzpakistani9-commits.github.io/onlinepsychologist/tools.html">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Free Psychology Tools &amp; Calculators">
-    <meta name="twitter:description" content="Mental health screeners, BMI calculator, mood tracker, and SPSS statistics tools.">
-    <meta property="og:image" content="https://mzpakistani9-commits.github.io/onlinepsychologist/profile_pic1.jpg">
-    <meta name="twitter:image" content="https://mzpakistani9-commits.github.io/onlinepsychologist/profile_pic1.jpg">
-    <title>Free Psychology Tools &amp; Calculators | Online Psychologist</title>
-    <!-- JSON-LD Schema: WebSite -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Free Psychology Tools & Calculators - Online Psychologist",
-        "url": "https://mzpakistani9-commits.github.io/onlinepsychologist/tools.html",
-        "description": "Free mental health tools: PHQ-9 depression screener, GAD-7 anxiety screener, BMI calculator, mood tracker, and more."
-    }
-    </script>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <style>
-        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
-        .page-title { font-size: 3rem; margin-bottom: 1rem; }
-        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
-        .tools-section { padding: 5rem 0; }
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .tool-card { background: white; border-radius: 20px; padding: 2rem; box-shadow: var(--shadow-md); border: 2px solid var(--border); transition: all 0.3s ease; text-decoration: none; color: inherit; display: block; }
-        .tool-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
-        .tool-icon { width: 70px; height: 70px; background: var(--gradient-soft); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
-        .tool-icon i { color: var(--primary); width: 35px; height: 35px; }
-        .tool-card h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 0.75rem; }
-        .tool-card p { color: var(--text-light); line-height: 1.6; margin-bottom: 1rem; font-size: 0.95rem; }
-        .tool-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-right: 0.5rem; }
-        .badge-mental { background: #EBF4FF; color: #2B6CB0; }
-        .badge-stats { background: #F0FFF4; color: #276749; }
-        .badge-health { background: #FFFAF0; color: #C05621; }
-        .badge-utility { background: #FAF5FF; color: #6B46C1; }
-        .tools-intro { max-width: 800px; margin: 0 auto 3rem; text-align: center; color: var(--text-light); line-height: 1.8; font-size: 1.1rem; }
-        @media (max-width: 768px) {
-            .page-title { font-size: 2rem; }
-            .tools-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Psychology Tools | Muhammad Zubair – Clinical Psychologist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0f1419;--deep:#1a2535;--teal:#2a6b7c;--teal-lt:#7dbdcb;--cream:#f6f3ee;--mist:#dce8eb;--white:#ffffff;--gold:#c4954a;--text:#2c3e47;--muted:#6a7d86;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--r-sm:6px;--r-md:12px;--r-lg:24px;--ease:cubic-bezier(.25,.8,.25,1)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(246,243,238,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,107,124,.12);transition:box-shadow .3s}
+  nav.scrolled{box-shadow:0 4px 24px rgba(15,20,25,.09)}
+  .nav-logo{font-family:var(--serif);font-size:1.45rem;font-weight:600;color:var(--teal);text-decoration:none}
+  .nav-logo span{font-style:italic;color:var(--gold)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{font-size:.82rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--teal)}
+  .nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:.45rem 1.1rem;border-radius:var(--r-sm)}
+  .page-hero{padding:7rem 0 5rem;background:var(--deep);position:relative;overflow:hidden;text-align:center}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(42,107,124,.4) 0%,transparent 60%)}
+  .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+  .page-hero-inner{position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.73rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1rem}
+  .eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--teal-lt)}
+  .page-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:1rem}
+  .page-hero h1 em{font-style:italic;color:var(--teal-lt)}
+  .page-hero p{font-size:1rem;color:rgba(255,255,255,.65);max-width:540px;margin:0 auto}
+  .container{max-width:1100px;margin:0 auto;padding:0 2rem}
+  section{padding:5rem 0}
+  .section-label{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+  .section-label::before{content:'';display:block;width:20px;height:1px;background:var(--teal)}
+  .section-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;color:var(--ink);line-height:1.15;margin-bottom:1rem}
+  .section-sub{font-size:.92rem;color:var(--muted);line-height:1.75;max-width:600px}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.8rem;border-radius:var(--r-sm);font-size:.88rem;font-weight:500;cursor:pointer;text-decoration:none;border:none;transition:transform .2s var(--ease),box-shadow .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--teal);color:var(--white);box-shadow:0 4px 20px rgba(42,107,124,.28)}
+  .btn-ghost{background:transparent;color:var(--teal);border:1.5px solid var(--teal)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* Disclaimer */
+  .disclaimer{background:rgba(42,107,124,.08);border:1px solid rgba(42,107,124,.2);border-radius:var(--r-md);padding:1rem 1.5rem;display:flex;align-items:flex-start;gap:.8rem;margin-bottom:3rem;font-size:.85rem;color:var(--muted);line-height:1.6}
+  .disclaimer-icon{font-size:1.2rem;flex-shrink:0}
+
+  /* Tools grid */
+  .tools-section{background:var(--white)}
+  .category-label{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:2px solid var(--mist);display:flex;align-items:center;gap:.5rem}
+  .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:3.5rem}
+  .tool-card{background:var(--cream);border-radius:var(--r-lg);border:1px solid rgba(42,107,124,.1);padding:1.8rem;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;display:flex;flex-direction:column}
+  .tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal-lt));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+  .tool-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(42,107,124,.12);border-color:rgba(42,107,124,.25)}
+  .tool-card:hover::before{transform:scaleX(1)}
+  .tool-icon{font-size:1.8rem;margin-bottom:1rem}
+  .tool-card h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:.5rem}
+  .tool-card p{font-size:.84rem;color:var(--muted);line-height:1.65;flex:1;margin-bottom:1.2rem}
+  .tool-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem}
+  .tag{background:var(--mist);color:var(--teal);font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:20px;letter-spacing:.04em}
+  .tool-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:500;color:var(--teal);text-decoration:none;margin-top:auto;transition:gap .2s}
+  .tool-link:hover{gap:.7rem}
+
+  /* Stats bar */
+  .stats-bar{background:var(--deep);padding:3rem 0}
+  .stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+  .stat-num{font-family:var(--serif);font-size:2.2rem;font-weight:600;color:var(--teal-lt);line-height:1}
+  .stat-label{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.4rem}
+
+  /* CTA + Footer */
+  .cta-band{background:linear-gradient(135deg,var(--teal) 0%,var(--deep) 100%);padding:4.5rem 0;text-align:center}
+  .cta-band h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--white);margin-bottom:.8rem}
+  .cta-band p{color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:.95rem}
+  .btn-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+  .btn-outline-white{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.5);border-radius:var(--r-sm);padding:.75rem 1.8rem;font-size:.88rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+  footer{background:var(--ink);color:rgba(255,255,255,.55);padding:3rem 0 1.5rem}
+  .footer-inner{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+  .footer-brand p{font-size:.83rem;line-height:1.7;margin-top:.8rem}
+  .footer-social{display:flex;gap:.6rem;margin-top:1rem}
+  .soc-btn{width:34px;height:34px;border-radius:var(--r-sm);background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:.85rem;transition:background .2s,color .2s}
+  .soc-btn:hover{background:var(--teal);color:white}
+  footer h4{font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+  footer ul a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:color .2s}
+  footer ul a:hover{color:var(--teal-lt)}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;flex-wrap:wrap;gap:.5rem}
+  .footer-bottom a{color:var(--teal-lt);text-decoration:none}
+
+  @media(max-width:900px){nav{padding:.9rem 1.5rem}.nav-links{display:none}.tools-grid{grid-template-columns:1fr 1fr}.stats-inner{grid-template-columns:1fr 1fr}.footer-inner{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.tools-grid{grid-template-columns:1fr}.stats-inner{grid-template-columns:1fr 1fr}.footer-inner{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}}
+</style>
 </head>
 <body>
-    <nav class="navbar" role="navigation">
-        <div class="container nav-content">
-            <a href="index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Me</a>
-                <a href="services.html">Services</a>
-                <a href="tools.html" class="active">Tools</a>
-                <a href="mpai-assessment.html">Assessment</a>
-                <a href="books.html">Books</a>
-                <a href="blog.html">Blog</a>
-                <a href="contact.html">Contact</a>
-                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
-            </div>
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
-        </div>
-    </nav>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">MZ <span>Zubair</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About Me</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="tools.html" class="active">Tools</a></li>
+    <li><a href="mpai-assessment.html">Assessment</a></li><li><a href="books.html">Books</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+    <li><a href="https://calendly.com/mzpakistani9" target="_blank" class="nav-cta">Book Session</a></li>
+  </ul>
+</nav>
 
-    <section class="page-hero">
-        <div class="container">
-            <h1 class="page-title">Free Psychology Tools</h1>
-            <p class="page-subtitle">Evidence-based screeners, calculators, and statistical tools for mental health and research</p>
-        </div>
-    </section>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Free Resources</div>
+    <h1>Psychology tools,<br><em>free for everyone.</em></h1>
+    <p>Evidence-based screeners, calculators, and statistical tools for mental health awareness and clinical research.</p>
+  </div>
+</div>
 
-    <section class="tools-section">
-        <div class="container">
-            <p class="tools-intro">
-                These tools are designed for educational and self-awareness purposes. 
-                Mental health screeners are not a substitute for professional diagnosis. 
-                If you're struggling, please <a href="contact.html">reach out</a> for proper support.
-            </p>
-            <div class="tools-grid">
-                <a href="tools/phq9-screener.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="heart"></i></div>
-                    <h3>PHQ-9 Depression Screener</h3>
-                    <p>Patient Health Questionnaire — 9-item screening tool for depression severity. Used by clinicians worldwide.</p>
-                    <div><span class="tool-badge badge-mental">Mental Health</span><span class="tool-badge badge-utility">Free</span></div>
-                </a>
+<!-- TOOLS -->
+<section class="tools-section">
+  <div class="container">
 
-                <a href="tools/gad7-screener.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="activity"></i></div>
-                    <h3>GAD-7 Anxiety Screener</h3>
-                    <p>Generalized Anxiety Disorder — 7-item assessment for anxiety severity. Clinically validated.</p>
-                    <div><span class="tool-badge badge-mental">Mental Health</span></div>
-                </a>
+    <div class="disclaimer reveal">
+      <span class="disclaimer-icon">ℹ️</span>
+      <span>These tools are designed for <strong>educational and self-awareness purposes only</strong>. Mental health screeners are not a substitute for professional diagnosis. If you are struggling, please <a href="contact.html" style="color:var(--teal)">reach out for proper support</a>.</span>
+    </div>
 
-                <a href="tools/treatment-plan.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="activity"></i></div>
-                    <h3>Clinical Treatment Plan Generator</h3>
-                    <p>Enter your MPAI domain scores to get a personalized, safety-checked, school-of-thought based treatment plan with phased interventions.</p>
-                    <div><span class="tool-badge badge-mental">Mental Health</span><span class="tool-badge badge-utility">Planning</span></div>
-                </a>
+    <!-- Mental Health Tools -->
+    <div class="reveal">
+      <div class="category-label">🧠 Mental Health Screeners</div>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card reveal">
+        <div class="tool-icon">📋</div>
+        <h3>PHQ-9 Depression Screener</h3>
+        <p>Patient Health Questionnaire — 9-item screening tool for depression severity. Used by clinicians worldwide as a validated diagnostic tool.</p>
+        <div class="tool-tags"><span class="tag">Mental Health</span><span class="tag">Free</span><span class="tag">Clinical</span></div>
+        <a href="tools/phq9-screener.html" class="tool-link">Open Tool →</a>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-icon">😰</div>
+        <h3>GAD-7 Anxiety Screener</h3>
+        <p>Generalized Anxiety Disorder — 7-item assessment for anxiety severity. Clinically validated and widely used in primary care settings.</p>
+        <div class="tool-tags"><span class="tag">Mental Health</span><span class="tag">Free</span><span class="tag">Clinical</span></div>
+        <a href="tools/gad7-screener.html" class="tool-link">Open Tool →</a>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-icon">📔</div>
+        <h3>Daily Mood Tracker</h3>
+        <p>Log your daily mood, add journal notes, and view mood history over the past month with an interactive chart for self-reflection.</p>
+        <div class="tool-tags"><span class="tag">Mental Health</span><span class="tag">Journal</span><span class="tag">Tracker</span></div>
+        <a href="tools/mood-tracker.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
 
-                <a href="mpai-assessment.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="users"></i></div>
-                    <h3>MPAI Personality Assessment</h3>
-                    <p>MIND Personality Assessment Instrument — comprehensive 80-item assessment across 8 developmental domains. For clinical intake.</p>
-                    <div><span class="tool-badge badge-mental">Assessment</span></div>
-                </a>
+    <!-- Assessment Tools -->
+    <div class="reveal">
+      <div class="category-label">📊 Assessment & Statistics</div>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card reveal">
+        <div class="tool-icon">🧬</div>
+        <h3>MPAI Personality Assessment</h3>
+        <p>MIND Personality Assessment Instrument — comprehensive 80-item assessment across 8 developmental domains. Designed for clinical intake and therapeutic use.</p>
+        <div class="tool-tags"><span class="tag">Assessment</span><span class="tag">Personality</span><span class="tag">Clinical</span></div>
+        <a href="mpai-assessment.html" class="tool-link">Take Assessment →</a>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-icon">🧠</div>
+        <h3>Clinical Treatment Plan Generator</h3>
+        <p>Enter your MPAI domain scores to get a personalized, safety-checked, school-of-thought based treatment plan with phased interventions.</p>
+        <div class="tool-tags"><span class="tag">Mental Health</span><span class="tag">Planning</span><span class="tag">Clinical</span></div>
+        <a href="tools/treatment-plan.html" class="tool-link">Open Tool →</a>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-icon">📐</div>
+        <h3>Independent T-Test Calculator</h3>
+        <p>Compare means between two groups. Enter sample size, mean, and SD for each group to compute t-value, degrees of freedom, and significance.</p>
+        <div class="tool-tags"><span class="tag">Statistics</span><span class="tag">SPSS</span><span class="tag">Research</span></div>
+        <a href="tools/ttest-calculator.html" class="tool-link">Open Tool →</a>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-icon">📊</div>
+        <h3>Chi-Square Calculator</h3>
+        <p>Test association between categorical variables. Enter observed frequencies in a 2×2 or 3×3 table to get chi-square value and significance level.</p>
+        <div class="tool-tags"><span class="tag">Statistics</span><span class="tag">SPSS</span><span class="tag">Research</span></div>
+        <a href="tools/chi-square.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
 
-                <a href="tools/bmi-calculator.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="bar-chart-2"></i></div>
-                    <h3>BMI Calculator</h3>
-                    <p>Three modes: Metric (cm/kg), Feet+Inches, or Inches only. Auto-detects feet notation (5.8 = 5'8").</p>
-                    <div><span class="tool-badge badge-health">Health</span></div>
-                </a>
+    <!-- Health & Utility -->
+    <div class="reveal">
+      <div class="category-label">⚕️ Health Calculators</div>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card reveal">
+        <div class="tool-icon">⚖️</div>
+        <h3>BMI Calculator</h3>
+        <p>Three modes: Metric (cm/kg), Feet+Inches, or Inches only. Auto-detects feet notation (e.g. 5.8 = 5'8"). Instant BMI and category display.</p>
+        <div class="tool-tags"><span class="tag">Health</span><span class="tag">Calculator</span><span class="tag">Free</span></div>
+        <a href="tools/bmi-calculator.html" class="tool-link">Open Tool →</a>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-icon">📏</div>
+        <h3>Feet to Inches Converter</h3>
+        <p>Convert feet and inches to total inches, or inches back to feet. Includes a quick reference conversion chart for common height values.</p>
+        <div class="tool-tags"><span class="tag">Converter</span><span class="tag">Utility</span></div>
+        <a href="tools/feet-inches-converter.html" class="tool-link">Open Tool →</a>
+      </div>
+    </div>
 
-                <a href="tools/mood-tracker.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="sun"></i></div>
-                    <h3>Daily Mood Tracker</h3>
-                    <p>Log your daily mood, add journal notes, and view your mood history over the past month with an interactive chart.</p>
-                    <div><span class="tool-badge badge-mental">Mental Health</span><span class="tool-badge badge-utility">Journal</span></div>
-                </a>
+  </div>
+</section>
 
-                <a href="tools/ttest-calculator.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="trending-up"></i></div>
-                    <h3>Independent T-Test Calculator</h3>
-                    <p>Compare means between two groups. Enter sample size, mean, and SD for each group to compute t-value and significance.</p>
-                    <div><span class="tool-badge badge-stats">SPSS</span><span class="tool-badge badge-stats">Statistics</span></div>
-                </a>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="reveal"><div class="stat-num">9</div><div class="stat-label">Free Tools</div></div>
+      <div class="reveal"><div class="stat-num">100%</div><div class="stat-label">No Sign-up</div></div>
+      <div class="reveal"><div class="stat-num">0</div><div class="stat-label">Data Stored</div></div>
+      <div class="reveal"><div class="stat-num">∞</div><div class="stat-label">Free Access</div></div>
+    </div>
+  </div>
+</div>
 
-                <a href="tools/chi-square.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="grid"></i></div>
-                    <h3>Chi-Square Calculator</h3>
-                    <p>Test association between categorical variables. Enter your observed frequencies in a 2x2 or 3x3 table.</p>
-                    <div><span class="tool-badge badge-stats">SPSS</span><span class="tool-badge badge-stats">Statistics</span></div>
-                </a>
+<div class="cta-band">
+  <div class="container">
+    <h2>Need professional guidance?</h2>
+    <p>Tools give insight — therapy creates lasting change. Book a session to go deeper.</p>
+    <div class="btn-actions">
+      <a href="https://wa.me/923187036719" target="_blank" class="btn btn-primary" style="background:white;color:var(--teal)">💬 WhatsApp Now</a>
+      <a href="services.html" class="btn-outline-white">View All Services</a>
+    </div>
+  </div>
+</div>
 
-                <a href="tools/feet-inches-converter.html" class="tool-card">
-                    <div class="tool-icon"><i data-feather="maximize-2"></i></div>
-                    <h3>Feet to Inches Converter</h3>
-                    <p>Convert feet and inches to total inches, or inches back to feet. Includes quick reference chart.</p>
-                    <div><span class="tool-badge badge-utility">Converter</span></div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-section">
-                <h3>Muhammad Zubair</h3>
-                <p>Clinical Psychologist & Web Developer</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
-                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i data-feather="facebook"></i></a>
-                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i data-feather="message-circle"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="mpai-assessment.html">MPAI Assessment</a></li>
-                    <li><a href="books.html">Books</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p><i data-feather="phone"></i> +92 318 7036719</p>
-                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
-                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
-        <i data-feather="message-circle"></i>
-    </a>
-    <script src="script.js"></script>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">MZ <span style="font-style:italic;color:#7dbdcb">Zubair</span></a><p>Evidence-based online therapy across Pakistan, Gulf, and internationally.</p><div class="footer-social"><a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" class="soc-btn">in</a><a href="https://www.facebook.com/psychologisthelp4648" target="_blank" class="soc-btn">f</a><a href="https://wa.me/923187036719" target="_blank" class="soc-btn">W</a></div></div>
+      <div><h4>Navigation</h4><ul><li><a href="about.html">About Me</a></li><li><a href="services.html">Services</a></li><li><a href="tools.html">Tools</a></li><li><a href="mpai-assessment.html">Assessment</a></li><li><a href="books.html">Books</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:+923187036719">+92 318 7036719</a></li><li><a href="mailto:mzpakistani9@gmail.com">mzpakistani9@gmail.com</a></li><li><a href="#">Lahore, Pakistan</a></li><li><a href="https://calendly.com/mzpakistani9" target="_blank">Book via Calendly</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Muhammad Zubair. All rights reserved.</span><a href="https://wa.me/923187036719" target="_blank">💬 WhatsApp for quick queries</a></div>
+  </div>
+</footer>
+<script>
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>30));
+  document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1}).observe(el));
+</script>
 </body>
 </html>

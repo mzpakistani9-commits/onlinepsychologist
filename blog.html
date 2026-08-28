@@ -1,260 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mental health blog by Muhammad Zubair, Online Psychologist. Articles on anxiety, depression, CBT, online therapy, and mental wellness tips.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/blog.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Health Blog | Muhammad Zubair – Clinical Psychologist Lahore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0f1419;--deep:#1a2535;--teal:#2a6b7c;--teal-lt:#7dbdcb;--cream:#f6f3ee;--mist:#dce8eb;--white:#ffffff;--gold:#c4954a;--text:#2c3e47;--muted:#6a7d86;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--r-sm:6px;--r-md:12px;--r-lg:24px;--ease:cubic-bezier(.25,.8,.25,1)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(246,243,238,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,107,124,.12);transition:box-shadow .3s}
+  nav.scrolled{box-shadow:0 4px 24px rgba(15,20,25,.09)}
+  .nav-logo{font-family:var(--serif);font-size:1.45rem;font-weight:600;color:var(--teal);text-decoration:none}
+  .nav-logo span{font-style:italic;color:var(--gold)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{font-size:.82rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--teal)}
+  .nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:.45rem 1.1rem;border-radius:var(--r-sm)}
+  .page-hero{padding:7rem 0 5rem;background:var(--deep);position:relative;overflow:hidden;text-align:center}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(42,107,124,.4) 0%,transparent 60%)}
+  .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+  .page-hero-inner{position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.73rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1rem}
+  .eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--teal-lt)}
+  .page-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:1rem}
+  .page-hero h1 em{font-style:italic;color:var(--teal-lt)}
+  .page-hero p{font-size:1rem;color:rgba(255,255,255,.65);max-width:540px;margin:0 auto}
+  .container{max-width:1100px;margin:0 auto;padding:0 2rem}
+  section{padding:5rem 0}
+  .section-label{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+  .section-label::before{content:'';display:block;width:20px;height:1px;background:var(--teal)}
+  .section-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;color:var(--ink);line-height:1.15;margin-bottom:1rem}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.8rem;border-radius:var(--r-sm);font-size:.88rem;font-weight:500;cursor:pointer;text-decoration:none;border:none;transition:transform .2s var(--ease),box-shadow .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--teal);color:var(--white);box-shadow:0 4px 20px rgba(42,107,124,.28)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.visible{opacity:1;transform:none}
 
-    <meta property="og:title" content="Mental Health Blog | Psychology Insights by Online Psychologist">
-    <meta property="og:description" content="Expert articles on anxiety, depression, CBT, online therapy, and mental wellness from a Clinical Psychologist.">
-    <meta property="og:url" content="https://mzpakistani9-commits.github.io/onlinepsychologist/blog.html">
-    <meta property="og:type" content="website">
+  /* Blog layout */
+  .blog-section{background:var(--white)}
+  .blog-layout{display:grid;grid-template-columns:1fr 300px;gap:3rem;margin-top:3rem}
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mental Health Blog | Online Psychologist">
-    <meta name="twitter:description" content="Expert psychology articles and mental health insights.">
-    <meta property="og:image" content="https://mzpakistani9-commits.github.io/onlinepsychologist/profile_pic1.jpg">
-    <meta name="twitter:image" content="https://mzpakistani9-commits.github.io/onlinepsychologist/profile_pic1.jpg">
+  /* Featured post */
+  .featured-post{background:var(--deep);border-radius:var(--r-lg);overflow:hidden;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr}
+  .feat-img{background:linear-gradient(135deg,var(--teal) 0%,rgba(15,20,25,.9) 100%);padding:3rem;display:flex;flex-direction:column;justify-content:flex-end}
+  .feat-badge{display:inline-block;background:var(--gold);color:white;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .65rem;border-radius:20px;margin-bottom:1rem;width:fit-content}
+  .feat-img h2{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:var(--white);line-height:1.2}
+  .feat-body{padding:2.5rem;display:flex;flex-direction:column;justify-content:center}
+  .feat-meta{font-size:.75rem;color:rgba(255,255,255,.45);margin-bottom:1rem;letter-spacing:.04em}
+  .feat-body p{font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:1.5rem}
+  .feat-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+  .tag{background:rgba(255,255,255,.1);color:var(--teal-lt);font-size:.7rem;padding:.22rem .6rem;border-radius:20px;font-weight:500}
+  .read-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.83rem;font-weight:500;color:var(--teal-lt);text-decoration:none;transition:gap .2s}
+  .read-link:hover{gap:.7rem}
 
-    <title>Mental Health Blog | Psychology Insights - Online Psychologist</title>
-    <!-- JSON-LD Schema: Blog -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Blog",
-        "name": "Mental Health Blog - Online Psychologist",
-        "description": "Expert articles on anxiety, depression, CBT, online therapy, and mental wellness from Clinical Psychologist Muhammad Zubair.",
-        "url": "https://mzpakistani9-commits.github.io/onlinepsychologist/blog.html",
-        "author": {
-            "@type": "Person",
-            "name": "Muhammad Zubair",
-            "jobTitle": "Clinical Psychologist"
-        }
-    }
-    </script>
+  /* Post cards */
+  .post-card{background:var(--cream);border-radius:var(--r-lg);border:1px solid rgba(42,107,124,.1);padding:1.8rem;margin-bottom:1.2rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:start;transition:transform .3s,box-shadow .3s}
+  .post-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(42,107,124,.1)}
+  .post-num{font-family:var(--serif);font-size:2rem;font-weight:600;color:rgba(42,107,124,.2);line-height:1;min-width:2.5rem}
+  .post-meta{font-size:.73rem;color:var(--muted);letter-spacing:.04em;margin-bottom:.4rem}
+  .post-card h3{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:.5rem}
+  .post-card p{font-size:.84rem;color:var(--muted);line-height:1.65;margin-bottom:.8rem}
+  .post-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+  .post-tag{background:var(--mist);color:var(--teal);font-size:.68rem;padding:.2rem .55rem;border-radius:20px;font-weight:500}
 
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  /* Sidebar */
+  .sidebar{}
+  .sidebar-card{background:var(--cream);border-radius:var(--r-lg);border:1px solid rgba(42,107,124,.1);padding:1.8rem;margin-bottom:1.5rem}
+  .sidebar-card h3{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:1rem}
+  .topic-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+  .topic-list li a{display:flex;align-items:center;justify-content:space-between;font-size:.85rem;color:var(--text);text-decoration:none;padding:.4rem 0;border-bottom:1px solid rgba(42,107,124,.08);transition:color .2s}
+  .topic-list li a:hover{color:var(--teal)}
+  .topic-count{background:var(--mist);color:var(--teal);font-size:.7rem;padding:.15rem .5rem;border-radius:20px}
+  .sidebar-cta{background:var(--deep);border-radius:var(--r-lg);padding:2rem;text-align:center}
+  .sidebar-cta h3{font-family:var(--serif);font-size:1.2rem;color:var(--white);margin-bottom:.6rem}
+  .sidebar-cta p{font-size:.83rem;color:rgba(255,255,255,.6);margin-bottom:1.2rem;line-height:1.65}
+  .sidebar-cta a{display:block;background:var(--teal);color:white;text-decoration:none;padding:.7rem;border-radius:var(--r-sm);font-size:.85rem;font-weight:500;transition:background .2s}
+  .sidebar-cta a:hover{background:var(--teal-lt)}
 
-    <style>
-        .page-hero {
-            background: var(--gradient);
-            color: white;
-            text-align: center;
-            padding: 8rem 0 4rem;
-        }
-        .page-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .page-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        .blog-listing {
-            padding: 5rem 0;
-        }
-        .blog-grid {
-            display: grid;
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .blog-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-        }
-        .blog-card h2 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
-        .blog-card h2 a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-        .blog-card h2 a:hover {
-            color: var(--accent);
-        }
-        .blog-meta {
-            color: var(--accent);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        .blog-excerpt {
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        .blog-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .tag {
-            background: var(--gradient-soft);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        @media (max-width: 768px) {
-            .page-title { font-size: 2rem; }
-            .blog-card { padding: 1.5rem; }
-            .blog-card h2 { font-size: 1.4rem; }
-        }
-    </style>
+  .cta-band{background:linear-gradient(135deg,var(--teal) 0%,var(--deep) 100%);padding:4.5rem 0;text-align:center}
+  .cta-band h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--white);margin-bottom:.8rem}
+  .cta-band p{color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:.95rem}
+  .btn-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+  .btn-outline-white{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.5);border-radius:var(--r-sm);padding:.75rem 1.8rem;font-size:.88rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+  footer{background:var(--ink);color:rgba(255,255,255,.55);padding:3rem 0 1.5rem}
+  .footer-inner{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+  .footer-brand p{font-size:.83rem;line-height:1.7;margin-top:.8rem}
+  .footer-social{display:flex;gap:.6rem;margin-top:1rem}
+  .soc-btn{width:34px;height:34px;border-radius:var(--r-sm);background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:.85rem;transition:background .2s,color .2s}
+  .soc-btn:hover{background:var(--teal);color:white}
+  footer h4{font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+  footer ul a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:color .2s}
+  footer ul a:hover{color:var(--teal-lt)}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;flex-wrap:wrap;gap:.5rem}
+  .footer-bottom a{color:var(--teal-lt);text-decoration:none}
+
+  @media(max-width:900px){nav{padding:.9rem 1.5rem}.nav-links{display:none}.blog-layout{grid-template-columns:1fr}.featured-post{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.footer-inner{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}}
+</style>
 </head>
 <body>
-    <nav class="navbar" role="navigation">
-        <div class="container nav-content">
-            <a href="index.html" class="logo">
-                <span class="logo-primary">MZ</span>
-                <span class="logo-text">Muhammad Zubair</span>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Me</a>
-                <a href="services.html">Services</a>
-                <a href="tools.html">Tools</a>
-                <a href="mpai-assessment.html">Assessment</a>
-                <a href="books.html">Books</a>
-                <a href="blog.html" class="active">Blog</a>
-                <a href="contact.html">Contact</a>
-                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
-            </div>
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
-                <i data-feather="menu"></i>
-            </button>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">MZ <span>Zubair</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About Me</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="tools.html">Tools</a></li>
+    <li><a href="mpai-assessment.html">Assessment</a></li><li><a href="books.html">Books</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li><li><a href="contact.html">Contact</a></li>
+    <li><a href="https://calendly.com/mzpakistani9" target="_blank" class="nav-cta">Book Session</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Mental Health Blog</div>
+    <h1>Insights on therapy,<br><em>wellness & mind.</em></h1>
+    <p>Expert articles on psychology, mental health, and well-being — written for patients, students, and professionals.</p>
+  </div>
+</div>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Latest Articles</div>
+      <h2 class="section-title">Recent posts</h2>
+    </div>
+
+    <div class="blog-layout">
+      <div>
+        <!-- Featured -->
+        <div class="featured-post reveal">
+          <div class="feat-img">
+            <span class="feat-badge">Featured</span>
+            <h2>Online Therapy in Lahore: A Complete Guide to Virtual Mental Health Support</h2>
+          </div>
+          <div class="feat-body">
+            <div class="feat-meta">June 18, 2026 · 5 min read</div>
+            <p>Discover how online therapy works in Lahore, what to expect from virtual sessions, and how to find the right psychologist for your needs. Includes costs, effectiveness research, and a step-by-step getting-started guide.</p>
+            <div class="feat-tags"><span class="tag">Online Therapy</span><span class="tag">Lahore</span><span class="tag">Mental Health</span></div>
+            <a href="#" class="read-link">Read Article →</a>
+          </div>
         </div>
-    </nav>
 
-    <section class="page-hero">
-        <div class="container">
-            <h1 class="page-title">Mental Health Blog</h1>
-            <p class="page-subtitle">Expert insights on therapy, wellness, and mental health from a Clinical Psychologist</p>
+        <!-- Post 1 -->
+        <div class="post-card reveal">
+          <div class="post-num">02</div>
+          <div>
+            <div class="post-meta">June 18, 2026 · 6 min read</div>
+            <h3>CBT for Anxiety: Effective Online Therapy for Anxiety Disorders in Pakistan</h3>
+            <p>Cognitive Behavioral Therapy is one of the most effective treatments for anxiety. Learn how online CBT works, its benefits, and how to access it from anywhere in Pakistan.</p>
+            <div class="post-tags"><span class="post-tag">CBT</span><span class="post-tag">Anxiety</span><span class="post-tag">Online Therapy</span><span class="post-tag">Pakistan</span></div>
+          </div>
         </div>
-    </section>
 
-    <section class="blog-listing">
-        <div class="container">
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <p class="blog-meta">June 18, 2026 — 5 min read</p>
-                    <h2><a href="blog/online-therapy-lahore.html">Online Therapy in Lahore: A Complete Guide to Virtual Mental Health Support</a></h2>
-                    <p class="blog-excerpt">Discover how online therapy works in Lahore, what to expect from virtual sessions, and how to find the right psychologist for your needs. Learn about costs, effectiveness, and getting started.</p>
-                    <div class="blog-tags">
-                        <span class="tag">Online Therapy</span>
-                        <span class="tag">Lahore</span>
-                        <span class="tag">Mental Health</span>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <p class="blog-meta">June 18, 2026 — 6 min read</p>
-                    <h2><a href="blog/cbt-anxiety-online-pakistan.html">CBT for Anxiety: Effective Online Therapy for Anxiety Disorders in Pakistan</a></h2>
-                    <p class="blog-excerpt">Cognitive Behavioral Therapy (CBT) is one of the most effective treatments for anxiety. Learn how online CBT works, its benefits, and how you can access it from anywhere in Pakistan.</p>
-                    <div class="blog-tags">
-                        <span class="tag">CBT</span>
-                        <span class="tag">Anxiety</span>
-                        <span class="tag">Online Therapy</span>
-                        <span class="tag">Pakistan</span>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <p class="blog-meta">June 18, 2026 — 5 min read</p>
-                    <h2><a href="blog/depression-treatment-online.html">Depression Treatment Online: How Virtual Therapy Can Help You Heal</a></h2>
-                    <p class="blog-excerpt">Struggling with depression? Online therapy offers accessible, effective treatment. This guide covers signs of depression, treatment options, and how to begin your healing journey.</p>
-                    <div class="blog-tags">
-                        <span class="tag">Depression</span>
-                        <span class="tag">Online Therapy</span>
-                        <span class="tag">Mental Health</span>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <p class="blog-meta">June 18, 2026 — 4 min read</p>
-                    <h2><a href="blog/how-to-choose-psychologist.html">How to Choose the Right Psychologist in Lahore: A Step-by-Step Guide</a></h2>
-                    <p class="blog-excerpt">Finding the right therapist can feel overwhelming. This guide walks you through credentials, specializations, logistics, and how to know when you've found the right fit.</p>
-                    <div class="blog-tags">
-                        <span class="tag">Psychologist</span>
-                        <span class="tag">Lahore</span>
-                        <span class="tag">Therapy Guide</span>
-                    </div>
-                </article>
-            </div>
+        <!-- Post 2 -->
+        <div class="post-card reveal">
+          <div class="post-num">03</div>
+          <div>
+            <div class="post-meta">June 18, 2026 · 5 min read</div>
+            <h3>Depression Treatment Online: How Virtual Therapy Can Help You Heal</h3>
+            <p>Struggling with depression? Online therapy offers accessible, effective treatment. This guide covers signs of depression, treatment options, and how to begin your healing journey from home.</p>
+            <div class="post-tags"><span class="post-tag">Depression</span><span class="post-tag">Online Therapy</span><span class="post-tag">Mental Health</span></div>
+          </div>
         </div>
-    </section>
 
-    <section class="cta-section">
-        <div class="container cta-content">
-            <h2>Ready to Start Your Therapy Journey?</h2>
-            <p>Book a free 15-minute consultation to discuss your needs</p>
-            <div class="cta-buttons">
-                <a href="https://wa.me/923187036719" class="btn-primary btn-large" target="_blank" rel="noopener noreferrer">
-                    <i data-feather="message-circle" aria-hidden="true"></i> WhatsApp Me
-                </a>
-                <a href="https://calendly.com/mzpakistani9" class="btn-outline-white btn-large" target="_blank" rel="noopener noreferrer">
-                    <i data-feather="calendar" aria-hidden="true"></i> Schedule Now
-                </a>
-            </div>
+        <!-- Post 3 -->
+        <div class="post-card reveal">
+          <div class="post-num">04</div>
+          <div>
+            <div class="post-meta">June 18, 2026 · 4 min read</div>
+            <h3>How to Choose the Right Psychologist in Lahore: A Step-by-Step Guide</h3>
+            <p>Finding the right therapist can feel overwhelming. This guide walks you through credentials, specializations, logistics, and how to know when you've found the right fit for your needs.</p>
+            <div class="post-tags"><span class="post-tag">Psychologist</span><span class="post-tag">Lahore</span><span class="post-tag">Therapy Guide</span></div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-section">
-                <h3>Muhammad Zubair</h3>
-                <p>Clinical Psychologist & Web Developer</p>
-                <div class="social-links">
-                    <a href="https://www.youtube.com/@psychologistmuhammadzubair4295" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i data-feather="facebook" aria-hidden="true"></i></a>
-                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i data-feather="message-circle" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="mpai-assessment.html">MPAI Assessment</a></li>
-                    <li><a href="books.html">Books</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p><i data-feather="phone" aria-hidden="true"></i> +92 318 7036719</p>
-                <p><i data-feather="mail" aria-hidden="true"></i> mzpakistani9@gmail.com</p>
-                <p><i data-feather="map-pin" aria-hidden="true"></i> Lahore, Pakistan</p>
-            </div>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-card reveal">
+          <h3>Topics</h3>
+          <ul class="topic-list">
+            <li><a href="#">Online Therapy <span class="topic-count">3</span></a></li>
+            <li><a href="#">Anxiety <span class="topic-count">2</span></a></li>
+            <li><a href="#">Depression <span class="topic-count">2</span></a></li>
+            <li><a href="#">CBT <span class="topic-count">2</span></a></li>
+            <li><a href="#">Lahore <span class="topic-count">2</span></a></li>
+            <li><a href="#">Pakistan <span class="topic-count">3</span></a></li>
+            <li><a href="#">Mental Health <span class="topic-count">4</span></a></li>
+            <li><a href="#">Therapy Guide <span class="topic-count">1</span></a></li>
+          </ul>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        <div class="sidebar-cta reveal">
+          <h3>Book a Free Consult</h3>
+          <p>Reading is the first step. A conversation could change everything.</p>
+          <a href="https://calendly.com/mzpakistani9" target="_blank">📅 Schedule Now — Free</a>
         </div>
-    </footer>
+        <div class="sidebar-card reveal">
+          <h3>Quick Contact</h3>
+          <div style="display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem">
+            <a href="https://wa.me/923187036719" target="_blank" style="display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--teal);text-decoration:none">💬 WhatsApp Chat</a>
+            <a href="mailto:mzpakistani9@gmail.com" style="display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--teal);text-decoration:none">✉️ Send an Email</a>
+            <a href="tel:+923187036719" style="display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--teal);text-decoration:none">📞 +92 318 7036719</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
-        <i data-feather="message-circle" aria-hidden="true"></i>
-    </a>
+<div class="cta-band">
+  <div class="container">
+    <h2>Ready to start your therapy journey?</h2>
+    <p>Book a free 15-minute consultation to discuss your needs — no commitment required.</p>
+    <div class="btn-actions">
+      <a href="https://wa.me/923187036719" target="_blank" class="btn btn-primary" style="background:white;color:var(--teal)">💬 WhatsApp Now</a>
+      <a href="https://calendly.com/mzpakistani9" target="_blank" class="btn-outline-white">📅 Schedule on Calendly</a>
+    </div>
+  </div>
+</div>
 
-    <script src="script.js"></script>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">MZ <span style="font-style:italic;color:#7dbdcb">Zubair</span></a><p>Evidence-based online therapy across Pakistan, Gulf, and internationally.</p><div class="footer-social"><a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" class="soc-btn">in</a><a href="https://www.facebook.com/psychologisthelp4648" target="_blank" class="soc-btn">f</a><a href="https://wa.me/923187036719" target="_blank" class="soc-btn">W</a></div></div>
+      <div><h4>Navigation</h4><ul><li><a href="about.html">About Me</a></li><li><a href="services.html">Services</a></li><li><a href="tools.html">Tools</a></li><li><a href="mpai-assessment.html">Assessment</a></li><li><a href="books.html">Books</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:+923187036719">+92 318 7036719</a></li><li><a href="mailto:mzpakistani9@gmail.com">mzpakistani9@gmail.com</a></li><li><a href="#">Lahore, Pakistan</a></li><li><a href="https://calendly.com/mzpakistani9" target="_blank">Book via Calendly</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Muhammad Zubair. All rights reserved.</span><a href="https://wa.me/923187036719" target="_blank">💬 WhatsApp for quick queries</a></div>
+  </div>
+</footer>
+<script>
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>30));
+  document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1}).observe(el));
+</script>
 </body>
 </html>
